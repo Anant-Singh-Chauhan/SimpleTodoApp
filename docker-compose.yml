@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  svc_mongo:
+    image: mongo:latest
+    container_name: mongoDb
+    ports: 
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: todoDb
+
+  svc_mongoExpress:
+    image: mongo-express
+    container_name: mongoUi
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongoDb
+      ME_CONFIG_MONGODB_AUTH_USERNAME: admin
+      ME_CONFIG_MONGODB_AUTH_PASSWORD: password123
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_URL: mongodb://admin:password123@mongoDb:27017/
+
+
+
+
