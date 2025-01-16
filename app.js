@@ -19,7 +19,7 @@ mongoose.connect('mongodb://admin:password123@localhost:27017', {
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static('./src/public'));
 
 app.use('/todos', todoRoutes);
 

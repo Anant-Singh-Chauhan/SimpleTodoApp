@@ -1,2 +1,18 @@
-FROM node
+#base image
+FROM node:latest
+
+# make target dir 
+## [RUN executes inside the container environment] 
+RUN mkdir -p ./TodoApp 
+
+# copy from 'host machine' to 'target dir in the container'.
+## [used COPY because COPY executes on HOST machine and the files we need to copy are on the Host machine (this PC)]
+COPY . /TodoApp
+
+RUN cd TodoApp
+
+# here we can run scripts with 'RUN' to install dependencies (if reqd.)
+
+# final entry command with 'CMD'
+CMD ["npm", "start"]
 
