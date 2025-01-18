@@ -1,5 +1,10 @@
-version: "3.8"
 services:
+  svc_todo_app:
+    image: todo_app:1.2
+    container_name: todo_app
+    ports:
+      - "3000:3000"
+
   svc_mongo:
     image: mongo:latest
     container_name: mongoDb
@@ -16,12 +21,6 @@ services:
     ports:
       - "8081:8081"
     environment:
-      ME_CONFIG_MONGODB_SERVER: mongoDb
-      ME_CONFIG_MONGODB_AUTH_USERNAME: admin
-      ME_CONFIG_MONGODB_AUTH_PASSWORD: password123
-      ME_CONFIG_MONGODB_PORT: 27017
-      ME_CONFIG_MONGODB_URL: mongodb://admin:password123@mongoDb:27017/
-
-
+      ME_CONFIG_MONGODB_URL: mongodb://admin:password123@svc_mongo/
 
 
