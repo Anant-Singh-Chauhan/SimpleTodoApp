@@ -2,13 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const todoRoutes = require('./src/routes/todos');
+const todoRoutes = require('./routes/todos');
 
 const app = express();
 const port = 3000;
 
 // MongoDB connection
-mongoose.connect('mongodb://admin:password123@localhost:27017', {
+mongoose.connect('mongodb://admin:password123@svc_mongo', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => {

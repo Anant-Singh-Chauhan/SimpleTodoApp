@@ -1,18 +1,18 @@
-#base image
-FROM node:latest
+# base image
+FROM node:18-alpine
 
-# make target dir 
-## [RUN executes inside the container environment] 
-RUN mkdir -p ./TodoApp 
+WORKDIR /TodoApp
+
+COPY package*.json /TodoApp
+
+# here we can run scripts with 'RUN' to install dependencies (if reqd.)
+RUN npm install
 
 # copy from 'host machine' to 'target dir in the container'.
 ## [used COPY because COPY executes on HOST machine and the files we need to copy are on the Host machine (this PC)]
-COPY . /TodoApp
+COPY ./src ./src
 
-RUN cd TodoApp
-
-# here we can run scripts with 'RUN' to install dependencies (if reqd.)
+EXPOSE 3000
 
 # final entry command with 'CMD'
-CMD ["npm", "start"]
-
+CMD ["node", "./src/app.js"]
