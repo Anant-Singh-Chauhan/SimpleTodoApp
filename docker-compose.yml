@@ -14,6 +14,8 @@ services:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password123
       MONGO_INITDB_DATABASE: todoDb
+    volumes:
+      - todo-db-data:/data/db
 
   svc_mongoExpress:
     image: mongo-express
@@ -23,4 +25,7 @@ services:
     environment:
       ME_CONFIG_MONGODB_URL: mongodb://admin:password123@svc_mongo/
 
+volumes:
+  todo-db-data:
+    driver: local
 
